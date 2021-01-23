@@ -22,7 +22,11 @@ import com.wyl.module_main.R;
 import com.wyl.module_main.adapter.VpAdapterMain;
 import com.wyl.module_main.impl.TabPagerListener;
 
-
+/**
+ * @create : wyl
+ * @date : 2021/1/8
+ * @备注：程序的首页
+ */
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
 public class MainActivity extends AppCompatActivity implements TabPagerListener, BubbleNavigationChangeListener {
 
