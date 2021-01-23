@@ -2,8 +2,8 @@ package com.wyl.lib_base;
 
 import android.app.Application;
 
+import com.alibaba.android.arouter.BuildConfig;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.wyl.lib_base.BuildConfig;
 import com.wyl.lib_base.module.IModuleInit;
 import com.wyl.lib_base.utils.KLog;
 

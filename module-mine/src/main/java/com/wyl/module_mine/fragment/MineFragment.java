@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.trello.rxlifecycle4.components.support.RxFragment;
-import com.wyl.lib_base.base.BaseFragment;
+import com.wyl.lib_base.base.ui.BaseFragment;
 import com.wyl.lib_base.routerpath.RouterFragmentPath;
 import com.wyl.module_mine.R;
 

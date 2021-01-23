@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.wyl.lib_base.base.BaseFragment;
+import com.wyl.lib_base.base.ui.BaseFragment;
 import com.wyl.lib_base.routerpath.RouterFragmentPath;
 import com.wyl.module_home.R;
 

@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 import com.wyl.lib_base.R;
-import com.wyl.lib_base.base.BaseFragment;
+import com.wyl.lib_base.base.ui.BaseFragment;
 
 import java.lang.ref.WeakReference;
 
