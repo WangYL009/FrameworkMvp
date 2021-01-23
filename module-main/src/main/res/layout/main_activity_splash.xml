@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pv="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <me.wangyuwei.particleview.ParticleView
+        android:id="@+id/particleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#36C1BC"
+        pv:pv_background_color="#36C1BC"
+        pv:pv_host_text="FrameWork"
+        pv:pv_host_text_size="20sp"
+        pv:pv_particle_text="WangYL版"
+        pv:pv_particle_text_size="15sp"
+        pv:pv_text_color="@color/white"
+        pv:pv_spread_anim_time="3000" />
+</LinearLayout>

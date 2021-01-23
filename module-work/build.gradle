@@ -1,0 +1,17 @@
+apply from:'../modulebuild.gradle'
+android {
+    defaultConfig {
+        if (isRunModule.toBoolean()){
+            applicationId "com.wyl.module_work"
+        }
+
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "work_"
+}
+
+dependencies {
+    implementation project(path: ':lib-base')
+    annotationProcessor rootProject.ext.dependencies["arouterCompiler"]
+
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <com.wyl.lib_base.widget.NoScrollViewPager
+        android:id="@+id/vp_noScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:ignore="MissingConstraints" />
+
+    <com.gauravk.bubblenavigation.BubbleNavigationConstraintView
+        android:id="@+id/bottom_navigation_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_main_tab"
+        android:elevation="8dp"
+        android:padding="12dp"
+        app:bnc_mode="spread"
+        tools:ignore="MissingConstraints">
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_active="true"
+            app:bt_colorActive="@color/main_tab1_active"
+            app:bt_colorInactive="@color/main_tab1_inactive"
+            app:bt_icon="@mipmap/ic_tab1"
+            app:bt_shape="@drawable/transition_background_drawable_home"
+            app:bt_title="@string/home" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="@color/main_tab4_active"
+            app:bt_colorInactive="@color/main_tab4_inactive"
+            app:bt_icon="@mipmap/ic_tab3"
+            app:bt_shape="@drawable/transition_background_drawable_work"
+            app:bt_title="@string/work" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="@color/main_tab5_active"
+            app:bt_colorInactive="@color/main_tab5_inactive"
+            app:bt_icon="@mipmap/ic_tab5"
+            app:bt_shape="@drawable/transition_background_drawable_mine"
+            app:bt_title="@string/mine" />
+
+
+        <!-- Add more child items here - max upto 5 -->
+
+    </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
+
+</LinearLayout>

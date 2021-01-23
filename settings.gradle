@@ -1,0 +1,9 @@
+include ':lib-res'
+include ':lib-base'
+include ':app'
+include ':module-main'
+include ':module-work'
+include ':module-mine'
+include ':module-home'
+include ':module-login'
+rootProject.name = "FrameworkMvp"

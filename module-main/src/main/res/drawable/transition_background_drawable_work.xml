@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transition xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ResourceName">
+    <!-- use whatever drawables you want, gradients, shapes etc-->
+    <item android:drawable="@android:color/transparent"/>
+    <item android:drawable="@drawable/work_background_oval"/>
+</transition>

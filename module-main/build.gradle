@@ -1,0 +1,24 @@
+apply from:'../modulebuild.gradle'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    defaultConfig {
+        if (isRunModule.toBoolean()){
+            applicationId "com.wyl.module_main"
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "main_"
+}
+
+dependencies {
+    api project(path: ':lib-base')
+    annotationProcessor rootProject.ext.dependencies["arouterCompiler"]
+    //particleview动画
+    implementation rootProject.ext.dependencies["particleview"]
+
+    api rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    implementation rootProject.ext.dependencies["bubblenavigation"]
+}

@@ -1,0 +1,17 @@
+apply from:'../modulebuild.gradle'
+android {
+    defaultConfig {
+        if (isRunModule.toBoolean()){
+            applicationId "com.wyl.module_home"
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "home_"
+}
+
+dependencies {
+    implementation project(path: ':lib-base')
+    annotationProcessor rootProject.ext.dependencies["arouterCompiler"]
+
+}
