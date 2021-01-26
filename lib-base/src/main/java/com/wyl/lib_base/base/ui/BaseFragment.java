@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
  * @date : 2021/1/7
  * @备注：
  */
-//public class BaseFragment <V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment {
+
 public class BaseFragment extends Fragment {
     public boolean isBackPressed() {
         return false;
