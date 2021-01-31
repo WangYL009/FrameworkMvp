@@ -41,9 +41,13 @@ ext {
             "butterknife-compiler"  : 'com.jakewharton:butterknife-compiler:10.2.3',
             //底部导航
             "bubblenavigation"      : 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7',
-
+            //butterknife
             "butterknife"           : "com.jakewharton:butterknife:$rootProject.butterknife_version",
             "butterknifeCompiler"   : "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version",
+            //eventbus
+            "eventbus"               : "org.greenrobot:eventbus:3.2.0",
+
+
             /*rxJava + retrofit -----start*/
             "retrofitConvertGson"   : "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version",
             "retrofitConvertScalars": "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit_version",
@@ -53,9 +57,7 @@ ext {
             "rxAndroid"             : "io.reactivex.rxjava2:rxandroid:2.1.1",
             "okhttp"                : "com.squareup.okhttp3:okhttp:4.0.0",
             /*rxJava + retrofit -----end*/
-
             "fastJson"              : "com.alibaba:fastjson:1.2.48",
-
 
             "viewModel"             : "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle_version",
             /*room 数据库 ---start*/

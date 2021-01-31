@@ -6,6 +6,7 @@ buildscript {
         //阿里镜像
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+
         google()
         jcenter()
         //开机动画
@@ -14,7 +15,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
     }
@@ -25,6 +26,7 @@ allprojects {
         //阿里镜像
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+
         google()
         jcenter()
         maven {

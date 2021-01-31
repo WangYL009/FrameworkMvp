@@ -1,140 +1,100 @@
 package com.wyl.lib_base.base.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.view.Window;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wyl.lib_base.base.proxy.IPresenterProxy;
-import com.wyl.lib_base.base.proxy.PresenterProxyImpl;
-import com.wyl.lib_base.utils.PermissionUtils;
-import com.wyl.lib_base.widget.LoadingDialog;
+import com.wyl.lib_base.event.BindEventBus;
+import com.wyl.lib_base.event.EventBusHelper;
+import com.wyl.lib_base.receiver.NetworkChangeReceiver;
+import com.wyl.lib_base.utils.StatusBarUtil;
 
 /**
- * @create : wyl
- * @date : 2021/1/23
- * @备注：
+ * 作者：YL Wang
+ * 包名：com.wyl.lib_base.base.ui
+ * 创建时间：1/31/21
+ * 备注：处理状态栏，网络等公共资源
  */
-public class BaseActivity extends AppCompatActivity implements IBaseView, IDelegate, PermissionUtils.PermissionCallbacks{
+public abstract class BaseActivity extends AppCompatActivity {
 
-
-    private LoadingDialog loadingDialog;
-
-    private IPresenterProxy mPresenterProxy;
-
+    protected Context mContext;
+    private NetworkChangeReceiver receiver;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenterProxy = new PresenterProxyImpl(this);
-        mPresenterProxy.bindPresenter();
+        setContentView(getLayoutResId());
+        mContext = this;
+        setStatusBarColor();
+        // 基类中注册 eventbus
+        if (this.getClass().isAnnotationPresent(BindEventBus.class)) {
+            EventBusHelper.register(this);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//黑色
+        }
+//        StatusBarUtil.setLightMode(this);
+
+        registerNetworkChangeReceiver();
+        initView();
+        initData();
     }
 
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        initContentView();
+    public void setStatusBarColor() {
+        StatusBarUtil.setColor(this, getResources().getColor(android.R.color.white), 0);
     }
 
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        initContentView();
-    }
+    protected abstract int getLayoutResId();
 
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        initContentView();
+    protected abstract void initView();
+
+    protected void initData() {
+
     }
 
     /**
-     * 在调用setContentView之后执行
+     * 注册网络监听广播
      */
-    protected void initContentView(){
-
-    }
-
-    @Override
-    public void showLoading(String msg) {
-        if (loadingDialog == null) {
-            loadingDialog = new LoadingDialog(this);
-        }
-        if (!TextUtils.isEmpty(msg)) {
-            loadingDialog.setMessage(msg);
-        }
-        loadingDialog.show();
-    }
-
-    @Override
-    public void hideLoading() {
-        if (loadingDialog != null && loadingDialog.isShowing()) {
-            loadingDialog.dismiss();
-        }
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void hideError() {
-
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void hideEmpty() {
-
-    }
-
-    @Override
-    public void showShortToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLongToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T extends Activity> T getActivity() {
-        return (T) this;
-    }
-
-    @Override
-    public final void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, String[] perms) {
-
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, String[] perms) {
-
+    private void registerNetworkChangeReceiver() {
+        receiver = new NetworkChangeReceiver(this);
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
     }
 
     @Override
     protected void onDestroy() {
-        mPresenterProxy.unbindPresenter();
         super.onDestroy();
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver.onDestroy();
+            receiver = null;
+        }
+        // 取消注册
+        if (this.getClass().isAnnotationPresent(BindEventBus.class)) {
+            EventBusHelper.unregister(this);
+        }
     }
+
+    public void setStatusBarTextColor(Window window, boolean lightStatusBar) {
+        // 设置状态栏字体颜色 白色与深色
+        View decor = window.getDecorView();
+        int ui = decor.getSystemUiVisibility();
+        ui |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (lightStatusBar) {
+                ui |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                ui &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+        }
+        decor.setSystemUiVisibility(ui);
+    }
+
 
 }

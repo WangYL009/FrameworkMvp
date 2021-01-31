@@ -6,7 +6,7 @@ import com.wyl.lib_base.config.ModuleLifecycleConfig;
 /**
  * @create : wyl
  * @date : 2021/1/7
- * @备注：
+ * @备注：宿主的应用
  */
 public class App extends BaseApplication {
 

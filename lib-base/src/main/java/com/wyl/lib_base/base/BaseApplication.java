@@ -12,7 +12,7 @@ import com.wyl.lib_base.utils.Utils;
 /**
  * @create : wyl
  * @date : 2021/1/7
- * @备注：
+ * @备注：所有项目的基础application
  *
  */
 public class BaseApplication extends Application {
